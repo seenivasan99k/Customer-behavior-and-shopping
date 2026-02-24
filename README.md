@@ -2,11 +2,11 @@
 
 Project using Power BI & SQL
 
-📌 Project Overview
+📌 Project Overview:
 
 This project focuses on analyzing customer behavior and shopping patterns using SQL for data querying and Microsoft Power BI for interactive data visualization. The goal is to derive meaningful business insights such as customer purchasing trends, subscription behavior, revenue contribution, and demographic analysis.
 
-🎯 Objectives
+🎯 Objectives:
 
 Analyze customer purchase behavior
 
@@ -18,7 +18,7 @@ Visualize key business insights through dashboards
 
 Support data-driven decision making
 
-🛠️ Tools & Technologies
+🛠️ Tools & Technologies:
 
 SQL (Data Cleaning & Querying)
 
@@ -26,7 +26,7 @@ Microsoft Power BI (Dashboard & Visualization)
 
 Excel/CSV Dataset (Customer Shopping Data)
 
-📂 Dataset Description
+📂 Dataset Description:
 
 The dataset contains customer shopping behavior details, including:
 
@@ -56,7 +56,7 @@ Promo Code Used
 
 Previous Purchases
 
-🧹 Data Processing (SQL)
+🧹 Data Processing (SQL):
 
 Key SQL tasks performed:
 
@@ -78,7 +78,7 @@ Revenue contribution by age group
 
 Subscription vs non-subscription behavior
 
-📊 Power BI Dashboard Features
+📊 Power BI Dashboard Features:
 
 The Power BI dashboard includes:
 
@@ -92,7 +92,7 @@ Revenue by Category & Age Group
 
 Seasonal Purchase Trends
 
-🔍 Key Insights
+🔍 Key Insights:
 
 Repeat customers show higher subscription rates
 
@@ -102,7 +102,7 @@ Discounts and promo codes influence purchase behavior
 
 Seasonal trends impact shopping patterns
 
-🚀 How to Use This Project
+🚀 How to Use This Project:
 
 Load the dataset into SQL database
 
