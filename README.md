@@ -1,36 +1,60 @@
-🛍️ Customer Behavior and Shopping Analysis
-
-Project using Power BI & SQL
+🛍️ Customer Behavior & Shopping Analysis
 
 📌 Project Overview:
 
-This project focuses on analyzing customer behavior and shopping patterns using SQL for data querying and Microsoft Power BI for interactive data visualization. The goal is to derive meaningful business insights such as customer purchasing trends, subscription behavior, revenue contribution, and demographic analysis.
+This project analyzes customer shopping behavior using Python (Jupyter Notebook), SQL (PostgreSQL), and Power BI.
 
-🎯 Objectives:
+The workflow includes:
 
-Analyze customer purchase behavior
+Data cleaning and preprocessing in Python
 
-Identify repeat customers and subscription trends
+Feature engineering and transformation
 
-Understand revenue contribution by age group and category
+Loading cleaned data into PostgreSQL
 
-Visualize key business insights through dashboards
+Performing SQL-based analysis
 
-Support data-driven decision making
+Preparing dataset for dashboard visualization
+
+This project demonstrates an end-to-end data analytics pipeline from raw CSV to structured database.
+
+🎯 Project Objectives:
+
+Clean and preprocess raw customer shopping data
+
+Handle missing values intelligently
+
+Create age segmentation for customer analysis
+
+Convert purchase frequency into numerical format
+
+Identify redundant columns
+
+Load cleaned dataset into PostgreSQL
+
+Enable SQL-based business insights
 
 🛠️ Tools & Technologies:
 
-SQL (Data Cleaning & Querying)
+Python (Pandas, NumPy)
 
-Microsoft Power BI (Dashboard & Visualization)
+Jupyter Notebook
 
-Excel/CSV Dataset (Customer Shopping Data)
+PostgreSQL
 
-📂 Dataset Description:
+SQLAlchemy & Psycopg2
 
-The dataset contains customer shopping behavior details, including:
+Power BI (for visualization – optional dashboard layer)
 
-Customer ID
+📂 Dataset Information:
+
+File: customer_shopping_behavior.csv
+Total Records: 3,900
+Columns: 18 (after cleaning: 19 engineered features before dropping redundant column)
+
+Key Features:
+
+Customer Id
 
 Age
 
@@ -52,62 +76,122 @@ Subscription Status
 
 Discount Applied
 
-Promo Code Used
-
 Previous Purchases
 
-🧹 Data Processing (SQL):
+Payment Method
 
-Key SQL tasks performed:
+Frequency Of Purchases
 
-Data cleaning and transformation
+🧹 Data Cleaning & Preprocessing (Python):
+✅ 1. Handling Missing Values:
 
-Aggregation and grouping
+37 missing values in Review Rating
 
-Customer segmentation
+Filled using median rating grouped by Category
 
-Revenue analysis
+df['Review Rating'] = df.groupby('Category')['Review Rating'].transform(lambda x: x.fillna(x.median()))
+✅ 2. Standardizing Column Names:
+
+Converted to lowercase
+
+Removed special characters
+
+Standardized format using .str.title()
+
+✅ 3. Feature Engineering:
+🔹 Age Group Creation
+
+Used quartile segmentation:
+
+labels = ['Young Adult', 'Adult', 'Middle-aged', 'Senior']
+df['age_group'] = pd.qcut(df['Age'], q=4, labels=labels)
+🔹 Purchase Frequency Conversion
+
+Converted categorical frequency into number of days:
+
+Frequency	Days
+Weekly	7
+Fortnightly	14
+Monthly	30
+Quarterly	90
+Annually	365
+df['Purchase_Frequency_Days'] = df['Frequency Of Purchases'].map(frequency_mapping)
+✅ 4. Redundant Column Removal
+
+Since:
+
+(df['Discount Applied'] == df['Promo Code Used']).all()
+
+Returned True,
+Promo Code Used was dropped because it duplicated Discount Applied.
+
+🗄️ Database Integration (PostgreSQL):
+
+Used SQLAlchemy to connect and load data:
+
+engine = create_engine(f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}")
+df.to_sql("customer", engine, if_exists="replace", index=False)
+
+📌 Database: customer_behavior
+📌 Table: customer
+
+Data successfully loaded into PostgreSQL.
+
+🔍 SQL Analysis Possibilities:
+
+Once loaded into SQL, analysis can include:
+
+Revenue by Age Group
+
+Subscription vs Non-subscription comparison
 
 Repeat customer analysis
 
-Example Insights Queries:
+Category-wise sales
 
-Customers with more than 5 previous purchases
+Average purchase amount by gender
 
-Revenue contribution by age group
+Seasonal revenue trends
 
-Subscription vs non-subscription behavior
+📊 Business Insights:
 
-📊 Power BI Dashboard Features:
+Median-based imputation improved rating reliability
 
-The Power BI dashboard includes:
+Age segmentation enables customer targeting
 
-Sales Overview Dashboard
+Numeric purchase frequency allows behavioral modeling
 
-Customer Demographics Analysis
+Removing redundant columns improves database efficiency
 
-Subscription Status Visualization
+Clean structured data enables advanced SQL analysis
 
-Revenue by Category & Age Group
+📁 Project Structure:
+customer-behavior-analysis/
+│
+├── data/
+│   └── customer_shopping_behavior.csv
+│
+├── notebook/
+│   └── data_cleaning_and_analysis.ipynb
+│
+├── sql/
+│   └── analysis_queries.sql
+│
+├── dashboard/
+│   └── powerbi_dashboard.pbix
+│
+└── README.md
 
-Seasonal Purchase Trends
+👤 Author:
 
-🔍 Key Insights:
+Seenivasan
+Aspiring Data Analyst
+Skilled in: Python | SQL | PostgreSQL | Power BI | Excel
 
-Repeat customers show higher subscription rates
+📎 Conclusion:
 
-Certain age groups contribute more to total revenue
+This project demonstrates a complete real-world data analytics workflow:
 
-Discounts and promo codes influence purchase behavior
+Raw Data ➝ Data Cleaning (Python) ➝ Feature Engineering ➝ Database Integration ➝ SQL Analysis ➝ Business Insights
 
-Seasonal trends impact shopping patterns
-
-🚀 How to Use This Project:
-
-Load the dataset into SQL database
-
-Run SQL queries for analysis
-
-Import the cleaned dataset into Power BI
-
-Build interactive dashboards and visualizations
+It highlights strong data preprocessing skills, database handling, and analytical thinking required for data analyst roles.
