@@ -99,12 +99,14 @@ Removed special characters
 Standardized format using .str.title()
 
 ✅ 3. Feature Engineering:
+
 🔹 Age Group Creation
 
 Used quartile segmentation:
 
 labels = ['Young Adult', 'Adult', 'Middle-aged', 'Senior']
 df['age_group'] = pd.qcut(df['Age'], q=4, labels=labels)
+
 🔹 Purchase Frequency Conversion
 
 Converted categorical frequency into number of days:
