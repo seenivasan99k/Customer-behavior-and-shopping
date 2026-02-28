@@ -83,6 +83,7 @@ Payment Method
 Frequency Of Purchases
 
 🧹 Data Cleaning & Preprocessing (Python):
+
 ✅ 1. Handling Missing Values:
 
 37 missing values in Review Rating
@@ -90,6 +91,7 @@ Frequency Of Purchases
 Filled using median rating grouped by Category
 
 df['Review Rating'] = df.groupby('Category')['Review Rating'].transform(lambda x: x.fillna(x.median()))
+
 ✅ 2. Standardizing Column Names:
 
 Converted to lowercase
@@ -97,6 +99,7 @@ Converted to lowercase
 Removed special characters
 
 Standardized format using .str.title()
+
 
 ✅ 3. Feature Engineering:
 
@@ -118,6 +121,7 @@ Monthly	30
 Quarterly	90
 Annually	365
 df['Purchase_Frequency_Days'] = df['Frequency Of Purchases'].map(frequency_mapping)
+
 ✅ 4. Redundant Column Removal
 
 Since:
